@@ -1,0 +1,15 @@
+﻿@model vertibrates.Models.project_table
+@{
+	ViewBag.Title = "AddNew";
+}
+<h2>AddNew</h2>
+<h3>@ViewBag.Message</h3>
+<div class="panel panel-default">
+	<div class="panel panel-heading">Add New Insaan</div>
+	<div class="panel-body">
+		@using (Html.BeginForm("AddNew", null, FormMethod.Post))
+		{
+			@Html.EditorForModel();
+		}
+	</div>
+</div>

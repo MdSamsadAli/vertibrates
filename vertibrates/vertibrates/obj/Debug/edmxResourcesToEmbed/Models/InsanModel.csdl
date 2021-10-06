@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="project_table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="project_table2" Relationship="Model.FK_project_table2_project_table" FromRole="project_table" ToRole="project_table2" />
+  </EntityType>
+  <EntityContainer Name="MainEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="project_table" EntityType="Self.project_table" />
+    <EntitySet Name="project_table2" EntityType="Model.project_table2" />
+    <AssociationSet Name="FK_project_table2_project_table" Association="Model.FK_project_table2_project_table">
+      <End Role="project_table" EntitySet="project_table" />
+      <End Role="project_table2" EntitySet="project_table2" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="project_table2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="projectID" Type="Int32" />
+    <NavigationProperty Name="project_table" Relationship="Model.FK_project_table2_project_table" FromRole="project_table2" ToRole="project_table" />
+  </EntityType>
+  <Association Name="FK_project_table2_project_table">
+    <End Type="Model.project_table" Role="project_table" Multiplicity="0..1" />
+    <End Type="Model.project_table2" Role="project_table2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_table2">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

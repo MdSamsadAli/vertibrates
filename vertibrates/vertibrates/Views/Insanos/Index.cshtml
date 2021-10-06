@@ -1,0 +1,36 @@
+﻿@model IEnumerable<vertibrates.Models.project_table>
+@{
+	ViewBag.Title = "Index";
+}
+<style>
+	.text-danger {
+		padding: 10px;
+		font-size: 33px;
+	}
+</style>
+<a class="text-danger" href="@Url.Action("AddNew")">Add New</a>
+<br />
+<table border="2" width="100%">
+	<tr>
+		<th>Sno</th>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Contact</th>
+		<th>Action</th>
+	</tr>
+	@{int sno = 1;}
+	@foreach (var data in Model)
+	{
+		<tr>
+			<td>@(sno++)</td>
+			<td>@data.Name</td>
+			<td>@data.Address</td>
+			<td>@data.Contact</td>
+			<td>
+				<a class="btn btn-danger" href="@Url.Action("Edit", new {id = data.ID})" >Edit</a>
+				<a class="btn btn-info" href="@Url.Action("Delete", new {id = data.ID})" >Delete</a>
+			</td>
+		</tr>
+
+	}
+</table>

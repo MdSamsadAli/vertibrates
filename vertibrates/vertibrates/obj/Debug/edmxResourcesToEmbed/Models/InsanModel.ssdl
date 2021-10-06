@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="project_table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Contact" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="project_table2">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Contact" Type="varchar" MaxLength="255" />
+    <Property Name="projectID" Type="int" />
+  </EntityType>
+  <Association Name="FK_project_table2_project_table">
+    <End Role="project_table" Type="Self.project_table" Multiplicity="0..1" />
+    <End Role="project_table2" Type="Self.project_table2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="project_table2">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="project_table" EntityType="Self.project_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="project_table2" EntityType="Self.project_table2" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_project_table2_project_table" Association="Self.FK_project_table2_project_table">
+      <End Role="project_table" EntitySet="project_table" />
+      <End Role="project_table2" EntitySet="project_table2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

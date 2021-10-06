@@ -1,0 +1,20 @@
+﻿@model vertibrates.Models.project_table
+@{
+	ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<div class="panel panel-default">
+	<div class="panel panel-heading"></div>
+	<div class="panel-body">
+		@using (Html.BeginForm("DeleteConfirmed", null, FormMethod.Post))
+		{
+			@Html.HiddenFor(model => model.ID)
+			<h2>Are You Sure to Delete???</h2>
+			@Html.DisplayForModel();
+			
+		}
+	</div>
+</div>
+
+
